@@ -18,7 +18,7 @@ def add():
     db.session.commit()
     return redirect(url_for("my_view.home"))
 
-@my_view.route("/update/<todo_id>")
+@my_view.route("/update/<todo_id>", methods=["GET", "POST"])
 def update(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.complete = not todo.complete
