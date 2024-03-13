@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint, render_template, request, redirect, url_for
+
 from .models import Todo
 from . import db
 my_view = Blueprint("my_view", __name__)
