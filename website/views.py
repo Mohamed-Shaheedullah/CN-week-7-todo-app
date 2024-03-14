@@ -8,16 +8,22 @@ my_view = Blueprint("my_view", __name__)
 def home():
     todo_list = Todo.query.all()    # returns list of objects
     # print(todo_list)
-    return render_template("index.html", todo_list = todo_list)
+    message = request.args.get("message", None)
+    return render_template("index.html", todo_list = todo_list, message=message)
 
 # add task
 @my_view.route("/add", methods = ["POST"])
 def add():
-    task = request.form.get("task")
-    new_todo = Todo(task=task)
-    db.session.add(new_todo)
-    db.session.commit()
-    return redirect(url_for("my_view.home"))
+    try:
+        task = request.form.get("task")
+        new_todo = Todo(task=task)
+        db.session.add(new_todo)
+        db.session.commit()
+        return redirect(url_for("my_view.home"))
+    except:
+        message = "There was an error adding your task"
+        return redirect(url_for("my_view.home", message=message))
+
 
 @my_view.route("/update/<todo_id>", methods=["GET", "POST"])
 def update(todo_id):
