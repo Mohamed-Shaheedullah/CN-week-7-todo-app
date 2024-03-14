@@ -10,3 +10,13 @@ body {
 .ok {
     color: green;
 }
+
+.button {
+    background-color: purple;
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }

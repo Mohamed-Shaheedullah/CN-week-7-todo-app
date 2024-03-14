@@ -16,9 +16,9 @@ def home():
 @my_view.route("/add", methods = ["POST"])
 def add():
     try:
-        # request form contents by 'name' of form
+        # request form contents by 'name' of form - task
         task = request.form.get("task")
-        # left task represents db field, right task represents contents of form
+        # left task represents var declared in above line , right task represents contents of form ?
         new_todo = Todo(task=task)
         db.session.add(new_todo)
         db.session.commit()

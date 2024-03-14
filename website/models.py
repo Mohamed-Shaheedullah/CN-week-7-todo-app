@@ -2,7 +2,7 @@ from . import db
 from sqlalchemy.sql import func
 import datetime
 
-# this is where database is defined
+# this is where database (schema?) is defined
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)

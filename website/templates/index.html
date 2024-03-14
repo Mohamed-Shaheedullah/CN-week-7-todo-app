@@ -43,7 +43,7 @@
             : date created {{my_task.date_created}}
             <!-- toggle for complete -->
             <form action="/update/{{my_task.id}}" method="post">
-                <button type = "submit"> click to change status</button>
+                <button type = "submit" class="button">change status</button>
             </form>
 
             <p><a href="/delete/{{my_task.id}}">Delete Task</a></p>
