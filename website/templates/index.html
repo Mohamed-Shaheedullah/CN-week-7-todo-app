@@ -39,17 +39,21 @@
                     {% else %}
                     incomplete               
                 {% endif %}
-            <!-- add date created -->
-            : date created {{my_task.date_created}}
-            <!-- toggle for complete -->
-            <form action="/update/{{my_task.id}}" method="post">
-                <button type = "submit" class="button">change status</button>
-            </form>
-
-            <p><a href="/delete/{{my_task.id}}">Delete Task</a></p>
-        </p>
-    {%  endfor %}
-
+                <!-- add date created -->
+                : date created {{my_task.date_created}}
+                <!-- toggle for complete -->
+                <div class="twobuttons">
+                    <form action="/update/{{my_task.id}}" method="post">
+                        <button type = "submit" class="button">change status</button>
+                    </form>
+                    <form action="/delete/{{my_task.id}}" method="post">
+                        <button type = "submit" class="button" id="del">delete</button>
+                    </form>
+                </div>
+                <!-- <p><a href="/delete/{{my_task.id}}">Delete Task</a></p> -->
+            </p>
+        {%  endfor %}
+    
     </div>
 </body>
 

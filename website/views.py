@@ -37,7 +37,7 @@ def update(todo_id):
     return redirect(url_for("my_view.home", er_message="              " ))
 
 # delete
-@my_view.route("/delete/<todo_id>")
+@my_view.route("/delete/<todo_id>", methods=["GET", "POST"])
 def delete(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     db.session.delete(todo)

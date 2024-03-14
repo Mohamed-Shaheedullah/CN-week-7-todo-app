@@ -20,3 +20,12 @@ body {
     margin: 4px 2px;
     cursor: pointer;
   }
+
+#del {
+    background-color: red;
+}
+.twobuttons {
+    display: flex;
+
+}
+
