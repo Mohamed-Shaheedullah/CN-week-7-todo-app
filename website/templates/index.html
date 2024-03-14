@@ -4,16 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
     <title>Todo App</title>
-
 </head>
 
 <body>
     <div>
         <h1>To Do List</h1>
-        <p>{% if message %}</p>
-                {{message}}
+        <p>{% if er_message %}</p>
+                <p class="er"> {{er_message}} </p>
+            {% else  %}
+            <p class="ok">task added successfully</p>
             {% endif %}
+            
+            
         <form action="/add" method="post">
             <div>
                 <label>Todo task</label>

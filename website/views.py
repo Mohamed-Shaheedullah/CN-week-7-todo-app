@@ -8,8 +8,8 @@ my_view = Blueprint("my_view", __name__)
 def home():
     todo_list = Todo.query.all()    # returns list of objects
     # print(todo_list)
-    message = request.args.get("message", None)
-    return render_template("index.html", todo_list = todo_list, message=message)
+    er_message = request.args.get("er_message", None)
+    return render_template("index.html", todo_list = todo_list, er_message=er_message)
 
 # add task
 @my_view.route("/add", methods = ["POST"])
@@ -21,8 +21,8 @@ def add():
         db.session.commit()
         return redirect(url_for("my_view.home"))
     except:
-        message = "There was an error adding your task"
-        return redirect(url_for("my_view.home", message=message))
+        er_message = "There was an error adding your task"
+        return redirect(url_for("my_view.home", er_message=er_message))
 
 
 @my_view.route("/update/<todo_id>", methods=["GET", "POST"])
@@ -30,7 +30,7 @@ def update(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.complete = not todo.complete
     db.session.commit()
-    return redirect(url_for("my_view.home"))
+    return redirect(url_for("my_view.home", er_message="              " ))
 
 # delete
 @my_view.route("/delete/<todo_id>")
@@ -38,4 +38,4 @@ def delete(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     db.session.delete(todo)
     db.session.commit()
-    return redirect(url_for("my_view.home"))
+    return redirect(url_for("my_view.home", er_message="              "))
