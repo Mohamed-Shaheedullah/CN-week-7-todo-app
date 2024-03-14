@@ -12,10 +12,13 @@ def home():
     return render_template("index.html", todo_list = todo_list, er_message=er_message)
 
 # add task
+# enable form
 @my_view.route("/add", methods = ["POST"])
 def add():
     try:
+        # request form contents by 'name' of form
         task = request.form.get("task")
+        # left task represents db field, right task represents contents of form
         new_todo = Todo(task=task)
         db.session.add(new_todo)
         db.session.commit()
@@ -28,6 +31,7 @@ def add():
 @my_view.route("/update/<todo_id>", methods=["GET", "POST"])
 def update(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
+    # toggle
     todo.complete = not todo.complete
     db.session.commit()
     return redirect(url_for("my_view.home", er_message="              " ))

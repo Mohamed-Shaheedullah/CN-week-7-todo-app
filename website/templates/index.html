@@ -11,32 +11,37 @@
 <body>
     <div>
         <h1>To Do List</h1>
+        <!-- handle messages, show at the top -->
         <p>{% if er_message %}</p>
                 <p class="er"> {{er_message}} </p>
             {% else  %}
-            <p class="ok">task added successfully</p>
+                <p class="ok">task added successfully</p>
             {% endif %}
             
-            
+        <!-- show the add task text box with submit button     -->
         <form action="/add" method="post">
             <div>
                 <label>Todo task</label>
+                <!-- name important here, refrred to in views /add -->
                 <input type="text" name="task" placeholder="Enter a Task">
                 <button type="submit">Add a Task</button>
             </div>
         </form>
-
-        <hr>
-        <!-- show a list of tasks READ -->
+        <!-- horizontal rule -->
+        <hr> 
+        <!-- show a list of tasks (READ) with status -->
+        <!-- todo_list is queried in views home and sent here in return statement, hence accessible -->
         {% for my_task in todo_list %}
+        <!-- my_task is a jinja var representing each task  -->
             <p>{{my_task.id}} : {{my_task.task}} : 
                 {% if my_task.complete == True %}
                     complete
                     {% else %}
                     incomplete               
                 {% endif %}
+            <!-- add date created -->
+            : date created {{my_task.date_created}}
             <!-- toggle for complete -->
-            date created {{my_task.date_created}}
             <form action="/update/{{my_task.id}}" method="post">
                 <button type = "submit"> click to change status</button>
             </form>
